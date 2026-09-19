@@ -316,7 +316,7 @@
           <img src="https://via.placeholder.com/500x500/f1eee6/3a3226?text=TA+5" alt="عکس خانوم مهندس باقری">
         </div>
         <div class="caption">
-          <span><span class="name">خانوم مهندس باقری</span><span class="role">حوزه صنعت</span></span>
+          <span><span class="name">خانم مهندس باقری</span><span class="role">حوزه صنعت</span></span>
           <span class="arrow">↗</span>
         </div>
       </button>
@@ -432,11 +432,13 @@
   const resumeCloseBtn = document.getElementById('resume-close-btn');
 
   let currentPerson = null;
+  let currentResumeId = null;
 
   document.querySelectorAll('.member-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const person = data[btn.dataset.id];
       currentPerson = person;
+      currentResumeId = btn.dataset.id;
       modalImg.src = person.photo;
       modalImg.alt = person.name;
       modalName.textContent = person.name;
@@ -451,13 +453,9 @@
   });
 
   modalResumeBtn.addEventListener('click', () => {
-    if(!currentPerson) return;
-    resumeTag.textContent = currentPerson.resumeTag;
-    resumeName.textContent = currentPerson.name;
-    resumeRole.textContent = currentPerson.role;
-    resumeText.textContent = currentPerson.resumeText;
-    resumeOverlay.classList.add('open');
-  });
+  if(!currentResumeId) return;
+  window.location.href = currentResumeId + '.html'; // e.g. bagheri.html
+});
 
   function closeResume(){
     resumeOverlay.classList.remove('open');
